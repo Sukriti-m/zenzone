@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import SideBar from "./SideBar";
 import { GoTriangleRight, GoTriangleLeft } from "react-icons/go";
@@ -30,7 +30,7 @@ const Space = () => {
   };
   
   // Video backgrounds
-  const videoBackgrounds = [
+  const videoBackgrounds = useMemo(() => [
     Backgrounds.narutoCloudyField,
     Backgrounds.cyberpunkBar,
     Backgrounds.pixelLofiCity,
@@ -48,7 +48,7 @@ const Space = () => {
     Backgrounds.fireplaceRoom,
     Backgrounds.sakuraGarden,
     Backgrounds.window,
-  ];
+  ], []);
 
   // Image backgrounds (GIFs and images)
   const imageBackgrounds = [
@@ -96,17 +96,17 @@ const Space = () => {
     }
   };
 
+  // Check if background is a video file
+  const isVideo = useCallback((src) => {
+    return videoBackgrounds.includes(src);
+  }, [videoBackgrounds]);
+
   // Force video reload when background changes
   useEffect(() => {
     if (videoRef.current && isVideo(background)) {
       videoRef.current.load();
     }
-  }, [background]);
-
-  // Check if background is a video file
-  const isVideo = (src) => {
-    return videoBackgrounds.includes(src);
-  };
+  }, [background, isVideo]);
   const inout_transform = () => {
     if (checkInout) {
       setcheckInout(false);

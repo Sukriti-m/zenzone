@@ -4,18 +4,14 @@ import SwiperCore, { Navigation } from "swiper";
 import { FiLink } from "react-icons/fi";
 import { FaTiktok } from "react-icons/fa";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { RiMenuAddLine, RiInstagramFill, RiYoutubeFill } from "react-icons/ri";
 import { MdVolumeUp, MdVolumeOff } from "react-icons/md";
-import Images from "../../assets/images";
 import savingSound from "../../assets/sounds/savingSound.mp3";
 import unsavingSound from "../../assets/sounds/unsavingSound.mp3";
 import rainlight from "../../assets/sounds/rainlight.mp3";
 //import swiper css
 import "swiper/css";
 //import components
-import FaqButton from "./FaqButton";
 import Shuffle from "./Shuffle";
-import Notification from "./Notification";
 SwiperCore.use([Navigation]);
 const SideBar = ({ css, onBackgroundChange }) => {
   const save = new Audio(savingSound);
@@ -85,9 +81,6 @@ const SideBar = ({ css, onBackgroundChange }) => {
       document.removeEventListener("touchstart", listener);
     };
   }, [notifiRef]);
-  const onOffnotifi = () => {
-    checkNotifi ? setcheckNotifi(false) : setcheckNotifi(true);
-  };
   return (
     <div
       className={`w-[21rem] ml-3 fixed top-0 h-full pt-[10px] pb-[10px] rounded-md py-3 transition ease-in-out delay-150 duration-300`}

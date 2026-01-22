@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useState } from "react";
 import Draggable from "react-draggable";
-import { MdVolumeUp, MdVolumeOff, MdVolumeDown } from "react-icons/md";
+import { MdVolumeUp, MdVolumeOff } from "react-icons/md";
 import SoundSettings from "./SoundSettings";
-import rainlight from "../../../assets/sounds/rainlight.mp3";
 import soundList from "../../../assets/sounds";
 const Sound = ({ controlState, setcontrolState }) => {
   const nodeRef = useRef(null);
