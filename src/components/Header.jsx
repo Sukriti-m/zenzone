@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaBars, FaTimes, FaTimesCircle, FaSearch } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { FaBars, FaTimes, FaTimesCircle, FaSearch, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import ListSpace from "../pages/Home/ListSpace";
 import Images from "../assets/images";
 
@@ -207,6 +207,17 @@ const Header = () => {
           </div>
           <div className="hidden lg:flex items-center">
             <ul className="flex">
+              <li className="p-4">
+                <a
+                  href="https://github.com/Sukriti-m/zenzone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 hover:text-thOrange duration-200"
+                  aria-label="GitHub Repository"
+                >
+                  <FaGithub size={20} />
+                </a>
+              </li>
               {menu.map(({ id, name }) => (
                 <li
                   key={id}
@@ -237,6 +248,17 @@ const Header = () => {
         }  w-full bg-[#f8f8f8] text-gray-700 absolute z-10 left-0 h-fit lg:hidden py-12 flex justify-center text-center duration-500 `}
       >
         <ul>
+          <li className="p-4 flex justify-center">
+            <a
+              href="https://github.com/Sukriti-m/zenzone"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-thBlue duration-200"
+              aria-label="GitHub Repository"
+            >
+              <FaGithub size={24} />
+            </a>
+          </li>
           {menu.map(({ id, name }) => (
             <li
               key={id}
