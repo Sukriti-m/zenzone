@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SwiperCore, { Navigation } from "swiper";
-import { FiLink } from "react-icons/fi";
-import { FaTiktok } from "react-icons/fa";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { MdVolumeUp, MdVolumeOff } from "react-icons/md";
 import savingSound from "../../assets/sounds/savingSound.mp3";
@@ -21,7 +19,6 @@ const SideBar = ({ css, onBackgroundChange }) => {
   const [volume, setvolume] = useState(0);
   const [passVolume, setpassVolume] = useState(0);
   const [checkHeart, setcheckHeart] = useState(false);
-  const [checkNotifi, setcheckNotifi] = useState(false);
   const [spaceName, setSpaceName] = useState("ZenZone Space");
   const [time, settime] = useState(
     new Date().toLocaleTimeString("en-US", {
@@ -72,7 +69,7 @@ const SideBar = ({ css, onBackgroundChange }) => {
       if (!notifiRef.current || notifiRef.current.contains(e.target)) {
         return;
       }
-      setcheckNotifi(false);
+      // Notification handling can be added here when needed
     };
     document.addEventListener("mousedown", listener);
     document.addEventListener("touchstart", listener);

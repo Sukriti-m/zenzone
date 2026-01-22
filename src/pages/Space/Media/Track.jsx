@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
-import Images from "../../../assets/images";
+import React, { useRef, useState, useEffect } from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { FaPlayCircle, FaPauseCircle } from "react-icons/fa";
 const Track = ({ response }) => {
@@ -15,12 +14,13 @@ const Track = ({ response }) => {
     ? Math.round((barTrack / duration) * 100)
     : 0;
   // background variable
-  const img = new Image();
   const canvasRef = useRef(null);
   const [bgRBG, setbgRBG] = useState();
-  img.crossOrigin = "anonymous";
-  img.src = response && response.album.images[0].url;
   useEffect(() => {
+    if (!response || !response.album || !response.album.images || !response.album.images[0]) return;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = response.album.images[0].url;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     img.addEventListener("load", () => {
