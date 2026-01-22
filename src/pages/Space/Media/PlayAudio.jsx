@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 //import icon
 import { FaSpotify } from "react-icons/fa";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
@@ -27,12 +27,13 @@ const PlayAudio = ({
   const { duration } = audioRef.current;
 
   // background variable
-  const img = new Image();
   const canvasRef = useRef(null);
   const [bgRBG, setbgRBG] = useState();
-  img.crossOrigin = "anonymous";
-  img.src = response && response.images[0].url;
   useEffect(() => {
+    if (!response || !response.images || !response.images[0]) return;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = response.images[0].url;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
     img.addEventListener("load", () => {
@@ -42,8 +43,20 @@ const PlayAudio = ({
     });
   }, [response]);
 
+  const checkSrc = (src) => {
+    const stringUrl = src.split("null")[0] + "null";
+    if (src === stringUrl) return true;
+    return false;
+  };
+  const handleNext = useCallback(() => {
+    if (trackIndex < trackList.length - 1) {
+      settrackIndex(trackIndex + 1);
+    } else {
+      settrackIndex(0);
+    }
+  }, [trackIndex, trackList.length, settrackIndex]);
   //count time to progress
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
@@ -53,7 +66,7 @@ const PlayAudio = ({
         setTrackProgress(audioRef.current.currentTime);
       }
     }, 1000);
-  };
+  }, [handleNext]);
   useEffect(() => {
     return () => {
       audioRef.current.pause();
@@ -71,12 +84,7 @@ const PlayAudio = ({
       audioRef.current.play();
       startTimer();
     }
-  }, [trackIndex]);
-  const checkSrc = (src) => {
-    const stringUrl = src.split("null")[0] + "null";
-    if (src === stringUrl) return true;
-    return false;
-  };
+  }, [trackIndex, audioSrc, handleNext, isPlaying, startTimer]);
   const handlePlay = () => {
     if (audioRef.current.src && checkSrc(audioRef.current.src)) {
       if (!isPlaying) {
@@ -108,13 +116,6 @@ const PlayAudio = ({
   const handlePause = () => {
     audioRef.current.pause();
     setIsPlaying(false);
-  };
-  const handleNext = () => {
-    if (trackIndex < trackList.length - 1) {
-      settrackIndex(trackIndex + 1);
-    } else {
-      settrackIndex(0);
-    }
   };
   const handlePrev = () => {
     if (trackIndex - 1 < 0) {
@@ -195,4 +196,3 @@ const PlayAudio = ({
 };
 
 export default PlayAudio;
-
