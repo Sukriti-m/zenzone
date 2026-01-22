@@ -73,7 +73,7 @@ const Home = () => {
       <div className="thumb mx-auto lg:w-1/2 h-[23rem] flex items-center">
         <div className="circle absolute rounded-[650px] opacity-[.97] blur-3xl mx-auto bg-circle-pattern w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] backdrop-blur-sm"></div>
         <div className="Tittile w-full lg:w-1/2 absolute flex items-center flex-wrap justify-center">
-          <h2 className="font-extrabold text-thBlack text-center font-Circularstd text-4xl lg:text-[56px] lg:leading-[64px]">
+          <h2 className="font-extrabold text-thBlack text-center font-Circularstd text-4xl lg:text-[56px] lg:leading-[64px] pb-4">
             Your space to focus and get things done
           </h2>
           <p className="text-[20px] text-center">
