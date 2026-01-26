@@ -2,6 +2,8 @@
 
 A modern, immersive focus and productivity application that helps you create the perfect digital workspace. ZenZone combines ambient backgrounds, soothing sounds, and productivity tools to help you stay focused and connected with your team.
 
+<img width="1916" height="1040" alt="Screenshot 2026-01-26 203619" src="https://github.com/user-attachments/assets/b744a14c-2b60-48d5-ad29-d6eff2149d33" />
+
 ## ✨ Features
 
 ### 🎨 Immersive Spaces
